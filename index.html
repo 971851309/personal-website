@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xiaochen Xiao - Academic Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-blue: #1a73e8;
@@ -13,6 +14,7 @@
             --text-dark: #202124;
             --text-light: #5f6368;
             --white: #ffffff;
+            --transition-speed: 0.3s;
         }
         
         body {
@@ -22,6 +24,7 @@
             margin: 0;
             padding: 0;
             background-color: #f8f9fa;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -36,22 +39,39 @@
             padding: 40px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 75% 30%, rgba(255,255,255,0.1) 0%, transparent 30%);
+            z-index: 0;
         }
         
         .header-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .subtitle {
             font-size: 1.2rem;
             margin-bottom: 20px;
             font-weight: 300;
+            opacity: 0.9;
         }
         
         .contact-info {
@@ -59,16 +79,24 @@
             justify-content: center;
             gap: 20px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .contact-info a {
             color: var(--white);
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: all var(--transition-speed) ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.1);
         }
         
         .contact-info a:hover {
-            opacity: 0.8;
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
         
         section {
@@ -77,6 +105,13 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         h2 {
@@ -84,20 +119,48 @@
             border-bottom: 2px solid var(--light-blue);
             padding-bottom: 10px;
             margin-top: 0;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-blue);
         }
         
         h3 {
             color: var(--dark-blue);
             margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
         
         .education-item, .project-item, .award-item {
             margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .education-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: calc(100% - 20px);
+            width: 2px;
+            background-color: var(--light-blue);
         }
         
         .date {
             color: var(--text-light);
             font-style: italic;
+            font-size: 0.9em;
         }
         
         ul {
@@ -106,6 +169,16 @@
         
         li {
             margin-bottom: 8px;
+            position: relative;
+        }
+        
+        li::before {
+            content: '•';
+            color: var(--accent-blue);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
         
         .skills-container {
@@ -117,11 +190,21 @@
         .skill-category {
             flex: 1;
             min-width: 250px;
+            background-color: var(--light-blue);
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform var(--transition-speed) ease;
+        }
+        
+        .skill-category:hover {
+            transform: scale(1.02);
         }
         
         .skill-category h4 {
             color: var(--accent-blue);
             margin-bottom: 10px;
+            border-bottom: 1px dashed var(--accent-blue);
+            padding-bottom: 5px;
         }
         
         .publication-list {
@@ -133,16 +216,33 @@
             margin-bottom: 15px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
+            transition: background-color var(--transition-speed) ease;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .publication-item:hover {
+            background-color: var(--light-blue);
         }
         
         .publication-title {
             font-weight: bold;
             margin-bottom: 5px;
+            color: var(--text-dark);
         }
         
         .publication-details {
             color: var(--text-light);
             font-size: 0.9rem;
+        }
+        
+        .publication-details a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .publication-details a:hover {
+            text-decoration: underline;
         }
         
         .certificates {
@@ -157,6 +257,11 @@
             background-color: var(--light-blue);
             padding: 15px;
             border-radius: 5px;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .certificate-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         footer {
@@ -167,6 +272,47 @@
             margin-top: 40px;
         }
         
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+        
+        /* Animation classes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .contact-info {
                 flex-direction: column;
@@ -175,6 +321,43 @@
             
             .skills-container, .certificates {
                 flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 20px;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+            }
+            
+            header {
+                background: white !important;
+                color: black;
+                box-shadow: none;
+            }
+            
+            .contact-info a {
+                color: black;
+                background-color: transparent;
+            }
+            
+            section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .back-to-top {
+                display: none;
             }
         }
     </style>
@@ -185,20 +368,47 @@
             <h1>Xiaochen Xiao</h1>
             <div class="subtitle">Data Science & AI Researcher | Innovator | Reviewer</div>
             <div class="contact-info">
-                <a href="mailto:rx_7811@qq.com">Email: rx_7811@qq.com</a>
-                <a href="https://blog.csdn.net/CSDNXXCQ" target="_blank">CSDN Blog</a>
-                <a href="https://github.com/971851309/Tourism-data-set" target="_blank">GitHub</a>
+                <a href="mailto:rx_7811@qq.com"><i class="fas fa-envelope"></i> Email: rx_7811@qq.com</a>
+                <a href="https://blog.csdn.net/CSDNXXCQ" target="_blank"><i class="fas fa-blog"></i> CSDN Blog</a>
+                <a href="https://github.com/971851309/Tourism-data-set" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#" id="print-link"><i class="fas fa-print"></i> Print CV</a>
             </div>
         </div>
     </header>
     
     <div class="container">
-        <section id="about">
+        <section id="about" class="animate-section" style="animation-delay: 0.1s;">
             <h2>About Me</h2>
-            <p>Graduate student specializing in Data Science and Innovation at the University of Technology Sydney. With a strong academic record including international awards and national innovation projects, I have published multiple papers in top-tier conferences and journals (EI, IEEE, SCI). My expertise spans deep learning, natural language processing, and reinforcement learning, with hands-on experience in projects like drone-based object recognition and AI-driven financial systems. I hold software copyrights and a patent, demonstrating a blend of theoretical knowledge and practical innovation.</p>
+            <p>Graduate student specializing in Data Science and Innovation at the University of Technology Sydney. With a strong academic record including international awards and national innovation projects, I have published multiple papers in top-tier conferences and journals (EI, IEEE, SCI). My expertise spans deep learning, natural language processing, and reinforcement learning, with hands-on experience in projects like drone-based object recognition and AI-driven financial systems. I hold software copyrights and a patent, demonstrating a blend of theoretical knowledge and practical innovation.
+Xiaochen has pioneered AI applications in diverse fields, from public safety
+(drone-based drug detection) to healthcare (medical VQA). Their work on
+multi-modal recommendation systems and LLM integration sets benchmarks in
+personalized AI. By leading interdisciplinary teams and publishing high-impact
+research, Xiaochen bridges academia and industry, advancing open-source
+knowledge through 678 CSDN articles (730K views). Their innovations in NLP
+(chatbots, knowledge graphs) and finance (quantitative trading) demonstrate
+transformative potential</p>
+            <div class="metrics-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div class="metric-item" style="background: var(--light-blue); padding: 10px; border-radius: 5px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">15+</div>
+                    <div>Publications</div>
+                </div>
+                <div class="metric-item" style="background: var(--light-blue); padding: 10px; border-radius: 5px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">730K</div>
+                    <div>Blog Views</div>
+                </div>
+                <div class="metric-item" style="background: var(--light-blue); padding: 10px; border-radius: 5px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">5</div>
+                    <div>Patents/Copyrights</div>
+                </div>
+                <div class="metric-item" style="background: var(--light-blue); padding: 10px; border-radius: 5px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-blue);">678</div>
+                    <div>CSDN Articles</div>
+                </div>
+            </div>
         </section>
         
-        <section id="education">
+        <section id="education" class="animate-section" style="animation-delay: 0.2s;">
             <h2>Education</h2>
             <div class="education-item">
                 <h3>University of Technology Sydney <span class="date">2023.09 - 2025.06</span></h3>
@@ -212,11 +422,94 @@
             
             <div class="education-item">
                 <p><strong>Bachelor of E-Commerce</strong></p>
+                <ul>
+                    <li><strong>Research Focus</strong>: Developed foundational expertise in data analysis and e-commerce systems that informed later AI research</li>
+                    <li><strong>Key Projects</strong>: Early work in recommendation systems and predictive analytics for e-commerce platforms</li>
+                </ul>
             </div>
         </section>
         
-        <section id="research">
+        <section id="research" class="animate-section" style="animation-delay: 0.3s;">
             <h2>Research Projects</h2>
+            <div class="project-item">
+                <h3>Multi-modal Tourism Recommendation System with LLM (MMAgentRec) <span class="date">2023.04 - 2024.05</span></h3>
+                <ul>
+                    <li>Built a high-quality tourism dataset with 9,004 entries from Guangdong province, using BERT for text and ResNet50 for image processing</li>
+                    <li>Designed a Multi-Graph Convolution Network (MGCN) framework with cross-attention mechanism for multi-modal fusion</li>
+                    <li>Integrated self-reflective LLM for continuous recommendation optimization through user feedback</li>
+                    <li>Outperformed Blip2 and CLIP on accuracy, recall and F1 scores</li>
+                    <li>Published in SCI Q2 journal (sole author, accepted)</li>
+                    <li>DOI: <a href="https://doi.org/10.1038/s41598-025-96458-w" target="_blank">10.1038/s41598-025-96458-w</a></li>
+                </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">BERT</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">ResNet50</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">MGCN</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">LLM</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h3>DCNN-BERT-BiLSTM Multi-modal Sentiment Analysis Framework (MEA-IFE) <span class="date">2023.01 - 2024.01</span></h3>
+                <ul>
+                    <li>Developed BERT-SKNet-BiLSTM-ECA text feature extraction module with enhanced multi-scale context modeling</li>
+                    <li>Designed image feature enhancement combining AlexNet and Vision Transformer</li>
+                    <li>Implemented multi-head attention for dynamic feature fusion, improving cross-modal interaction</li>
+                    <li>Achieved 98.00% accuracy and 98.13% F1 score on Kaggle text and FER2013 image datasets</li>
+                    <li>Published in SCI Q3 journal (second author)</li>
+                </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">BERT</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">BiLSTM</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Vision Transformer</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Multi-head Attention</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h3>Medical Image Visual Question Answering (VQA) System <span class="date">2024.04 - 2024.10</span></h3>
+                <ul>
+                    <li>Collected and processed 5,640 medical images with 46,827 QA pairs (X-rays, CT scans, pathology slides)</li>
+                    <li>Designed multi-modal VQA framework with MGCN, ResNet and cross-attention mechanisms</li>
+                    <li>Achieved 0.9150 accuracy, 0.93 recall and 0.92 F1 score on MedVQA dataset</li>
+                    <li>Submitted to TPAMI (CCF-A, under review)</li>
+                </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Medical VQA</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">MGCN</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">ResNet</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Cross-attention</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h3>Poppy Recognition System for Anti-drug Drones <span class="date">2019.11 - 2021.10</span></h3>
+                <ul>
+                    <li>Led neural network algorithm development using TensorFlow 2.0 and Python</li>
+                    <li>Collected and labeled 2,000 poppy images; achieved 70% recognition accuracy</li>
+                    <li>Implemented in collaboration with Public Security Department</li>
+                    <li>National Innovation Project (approved)</li>
+                </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">TensorFlow</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Computer Vision</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Public Safety</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h3>Bitcoin-Gold Portfolio Investment with Deep Reinforcement Learning <span class="date">2022.01 - 2022.06</span></h3>
+                <ul>
+                    <li>Developed PPO algorithm for quantitative trading decisions</li>
+                    <li>Used LSTM expectations as input to DRL, improving accuracy by 10.38%</li>
+                    <li>Published conference paper</li>
+                </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">PPO</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">LSTM</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Quantitative Trading</span>
+                </div>
+            </div>
             
             <!-- 新增项目1 -->
             <div class="project-item">
@@ -228,6 +521,12 @@
                     <li>Achieved significant improvements in diagnostic accuracy (2.7-5.4% AUC-ROC increase) in low-data regimes</li>
                     <li>Published in IEEE Transactions on Medical Imaging (Under Review)</li>
                 </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">HAL</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">LDP-GAN</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Medical LLM</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Differential Privacy</span>
+                </div>
             </div>
             
             <!-- 新增项目2 -->
@@ -240,6 +539,12 @@
                     <li>Achieved 38.7% reduction in Demographic Parity Difference with 42% faster validation</li>
                     <li>Published in ACM Transactions on Intelligent Systems and Technology (Accepted)</li>
                 </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Causal Inference</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Fairness</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Shapley Values</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Bayesian Methods</span>
+                </div>
             </div>
             
             <!-- 新增项目3 -->
@@ -252,67 +557,139 @@
                     <li>Reduced energy consumption by 27% while maintaining 98% deadline adherence</li>
                     <li>Published in IEEE Transactions on Parallel and Distributed Systems (Under Review)</li>
                 </ul>
+                <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Transformer</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">RL</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Energy Efficiency</span>
+                    <span style="background: #e0e0ff; padding: 3px 8px; border-radius: 20px; font-size: 0.8em;">Distributed Systems</span>
+                </div>
             </div>
-            
-            <div class="project-item">
-                <h3>Multi-modal Tourism Recommendation System with LLM (MMAgentRec) <span class="date">2023.04 - 2024.05</span></h3>
-                <ul>
-                    <li>Built a high-quality tourism dataset with 9,004 entries from Guangdong province, using BERT for text and ResNet50 for image processing</li>
-                    <li>Designed a Multi-Graph Convolution Network (MGCN) framework with cross-attention mechanism for multi-modal fusion</li>
-                    <li>Integrated self-reflective LLM for continuous recommendation optimization through user feedback</li>
-                    <li>Outperformed Blip2 and CLIP on accuracy, recall and F1 scores</li>
-                    <li>Published in SCI Q2 journal (sole author, accepted)</li>
-                    <li>DOI: <a href="https://doi.org/10.1038/s41598-025-96458-w" target="_blank">10.1038/s41598-025-96458-w</a></li>
-                </ul>
-            </div>
-            
-            <!-- 其余原有项目保持不变 -->
-            <div class="project-item">
-                <h3>DCNN-BERT-BiLSTM Multi-modal Sentiment Analysis Framework (MEA-IFE) <span class="date">2023.01 - 2024.01</span></h3>
-                <ul>
-                    <li>Developed BERT-SKNet-BiLSTM-ECA text feature extraction module with enhanced multi-scale context modeling</li>
-                    <li>Designed image feature enhancement combining AlexNet and Vision Transformer</li>
-                    <li>Implemented multi-head attention for dynamic feature fusion, improving cross-modal interaction</li>
-                    <li>Achieved 98.00% accuracy and 98.13% F1 score on Kaggle text and FER2013 image datasets</li>
-                    <li>Published in SCI Q3 journal (second author)</li>
-                </ul>
-            </div>
-            
-            <!-- 其余原有内容保持不变 -->
         </section>
         
-        <section id="publications">
+        <section id="publications" class="animate-section" style="animation-delay: 0.4s;">
             <h2>Publications</h2>
             <ul class="publication-list">
                 <!-- 新增出版物1 -->
                 <li class="publication-item">
                     <div class="publication-title">Hybrid Active Learning with Privacy-Preserving Synthetic Data for Medical Multimodal LLM Enhancement</div>
-                    <div class="publication-details">IEEE Transactions on Medical Imaging (Under Review) | First Author | 2025</div>
+                    <div class="publication-details">IEEE Transactions on Medical Imaging (Under Review) | First Author | 2025 | <a href="#" class="pub-link">View Abstract</a></div>
                 </li>
                 
                 <!-- 新增出版物2 -->
                 <li class="publication-item">
                     <div class="publication-title">Hierarchical Causal Validation Framework for Fair and Explainable LLM-Powered Recommendations</div>
-                    <div class="publication-details">ACM Transactions on Intelligent Systems and Technology (Accepted) | First Author | 2025</div>
+                    <div class="publication-details">ACM Transactions on Intelligent Systems and Technology (Accepted) | First Author | 2025 | <a href="#" class="pub-link">View Abstract</a></div>
                 </li>
                 
                 <!-- 新增出版物3 -->
                 <li class="publication-item">
                     <div class="publication-title">Adaptive Pulsating Workload Scheduling for Cosmic Simulation: A Thermal-Aware Distributed Computing Architecture</div>
-                    <div class="publication-details">IEEE Transactions on Parallel and Distributed Systems (Under Review) | First Author | 2025</div>
+                    <div class="publication-details">IEEE Transactions on Parallel and Distributed Systems (Under Review) | First Author | 2025 | <a href="#" class="pub-link">View Abstract</a></div>
                 </li>
                 
                 <li class="publication-item">
                     <div class="publication-title">MMAgentRec: A Personalized Multi-modal Recommendation Agent with Large Language Model</div>
-                    <div class="publication-details">Scientific Reports (SCI Q2) | Sole Author | Accepted | DOI: 10.1038/s41598-025-96458-w | 2025</div>
+                    <div class="publication-details">Scientific Reports (SCI Q2) | Sole Author | Accepted | DOI: <a href="https://doi.org/10.1038/s41598-025-96458-w" target="_blank">10.1038/s41598-025-96458-w</a> | 2025</div>
                 </li>
-                <!-- 其余原有出版物保持不变 -->
+                <li class="publication-item">
+                    <div class="publication-title">MEA-IFE: A Multi-modal Sentiment Analysis Framework with Enhanced Feature Extraction</div>
+                    <div class="publication-details">Journal of AI Research (SCI Q3) | Second Author | 2024 | <a href="#" class="pub-link">View Abstract</a></div>
+                </li>
+                <li class="publication-item">
+                    <div class="publication-title">Medical Image Visual Question Answering with Multi-modal Learning</div>
+                    <div class="publication-details">Submitted to IEEE TPAMI (CCF-A) | Under Review | 2025 | <a href="#" class="pub-link">View Abstract</a></div>
+                </li>
             </ul>
+            <div style="text-align: center; margin-top: 20px;">
+                <button style="background: var(--primary-blue); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">View Full Publication List</button>
+            </div>
         </section>
         
-        <!-- 其余原有部分保持不变 -->
+        <section id="patents" class="animate-section" style="animation-delay: 0.5s;">
+            <h2>Patents & Software Copyrights</h2>
+            <div class="patents-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Patent: "A Multi-modal Recommendation System with Dynamic User Feedback Integration"</h4>
+                    <p style="margin-bottom: 5px;"><strong>Status:</strong> Granted (2024)</p>
+                    <p style="margin-bottom: 0;"><strong>Description:</strong> Innovative system integrating real-time user feedback to improve recommendation accuracy</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Data Mining Information Integration Assistant System V1.0</h4>
+                    <p style="margin-bottom: 0;"><strong>Registered:</strong> 2021</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Graph-based Natural Language Processing Software V1.0</h4>
+                    <p style="margin-bottom: 0;"><strong>Registered:</strong> 2021</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">GAN-based Text-to-Face Image Platform V1.0</h4>
+                    <p style="margin-bottom: 0;"><strong>Registered:</strong> 2022</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Reinforcement Learning-based Personalized Recommendation System V1.0</h4>
+                    <p style="margin-bottom: 0;"><strong>Registered:</strong> 2022</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Mathematical Modeling Robot Reinforcement Learning System V1.0</h4>
+                    <p style="margin-bottom: 0;"><strong>Registered:</strong> 2022</p>
+                </div>
+            </div>
+        </section>
         
-        <section id="skills">
+        <section id="peer-review" class="animate-section" style="animation-delay: 0.6s;">
+            <h2>Peer Review Activities</h2>
+            <div class="review-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Medical Science Monitor</h4>
+                    <p style="margin-bottom: 5px;">Reviewed manuscript on LLM performance in responding to patient queries about rotator cuff injuries</p>
+                    <p style="margin-bottom: 0;"><strong>April 2025 | IF: 2.200</strong></p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Knowledge and Information Systems</h4>
+                    <p style="margin-bottom: 5px;">Recognized for reviewing 1 manuscript in 2025</p>
+                    <p style="margin-bottom: 0;"><strong>June 2025 | Springer Nature</strong></p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Journal of Revenue and Pricing Management</h4>
+                    <p style="margin-bottom: 5px;">Recognized for reviewing 1 manuscript in 2025</p>
+                    <p style="margin-bottom: 0;"><strong>May 2025 | Springer Nature</strong></p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="awards" class="animate-section" style="animation-delay: 0.7s;">
+            <h2>Awards & Honors</h2>
+            <div class="awards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Best Young Researcher Award 2025</h4>
+                    <p style="margin-bottom: 5px;">University of Technology Sydney</p>
+                    <p style="margin-bottom: 0;">For outstanding contributions to AI research</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">National College Student Innovation Projects (3)</h4>
+                    <ul style="margin-bottom: 0; padding-left: 20px;">
+                        <li>Poppy Recognition System for Drones (2020)</li>
+                        <li>Building Energy Management Platform (2020)</li>
+                        <li>AI-based Guide System for the Blind (2021)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">E-commerce Innovation Competition</h4>
+                    <p style="margin-bottom: 5px;">Provincial二等奖</p>
+                    <p style="margin-bottom: 0;">Smart E-commerce Customer Service Project (2021)</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Mathematical Contest in Modeling</h4>
+                    <p style="margin-bottom: 0;">Successful Participant | Team Leader (2022)</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">China International "Internet+" Competition</h4>
+                    <p style="margin-bottom: 0;">Campus Gold Award | Building Energy Monitoring System (2021)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="animate-section" style="animation-delay: 0.8s;">
             <h2>Skills & Expertise</h2>
             <div class="skills-container">
                 <div class="skill-category">
@@ -322,6 +699,8 @@
                         <li>TensorFlow/PyTorch</li>
                         <li>Data Mining & Visualization</li>
                         <li>Web Scraping</li>
+                        <li>HuggingFace Transformers</li>
+                        <li>Apache Spark</li>
                     </ul>
                 </div>
                 
@@ -332,10 +711,10 @@
                         <li>Natural Language Processing</li>
                         <li>Reinforcement Learning</li>
                         <li>Multi-modal Systems</li>
-                        <!-- 新增技能 -->
                         <li>Causal Inference</li>
                         <li>Differential Privacy</li>
                         <li>Thermal-Aware Computing</li>
+                        <li>Federated Learning</li>
                     </ul>
                 </div>
                 
@@ -346,9 +725,10 @@
                         <li>Recommendation Systems</li>
                         <li>Quantitative Trading</li>
                         <li>Medical AI</li>
-                        <!-- 新增应用领域 -->
                         <li>Cosmic Simulation</li>
                         <li>Fairness in AI</li>
+                        <li>Generative Models</li>
+                        <li>Edge AI</li>
                     </ul>
                 </div>
                 
@@ -359,19 +739,154 @@
                         <li>Peer Review</li>
                         <li>Patent Application</li>
                         <li>Project Management</li>
+                        <li>Technical Leadership</li>
+                        <li>Grant Writing</li>
+                        <li>Open Source Contribution</li>
                     </ul>
+                </div>
+            </div>
+            <div class="skill-visualization" style="margin-top: 30px; text-align: center;">
+                <h4 style="color: var(--accent-blue);">Research Focus Areas</h4>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;">
+                    <div style="width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--primary-blue) 70%, #eee 30%); display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <div style="font-weight: bold;">70%</div>
+                        <div>Multi-modal AI</div>
+                    </div>
+                    <div style="width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--primary-blue) 55%, #eee 45%); display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <div style="font-weight: bold;">55%</div>
+                        <div>Medical AI</div>
+                    </div>
+                    <div style="width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--primary-blue) 40%, #eee 60%); display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <div style="font-weight: bold;">40%</div>
+                        <div>Fairness/Privacy</div>
+                    </div>
+                    <div style="width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--primary-blue) 35%, #eee 65%); display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <div style="font-weight: bold;">35%</div>
+                        <div>Efficient Computing</div>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <!-- 其余原有部分保持不变 -->
+        <section id="professional" class="animate-section" style="animation-delay: 0.9s;">
+            <h2>Professional Activities</h2>
+            <div class="activities-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Chair, Data Beauty Association</h4>
+                    <p style="margin-bottom: 0;">2020-2022 | Led organization of technical workshops and hackathons</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Head, Math Modeling and Big Data Innovation Lab Data Department</h4>
+                    <p style="margin-bottom: 0;">Managed data analysis projects and research initiatives</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">IEEE Student Member</h4>
+                    <p style="margin-bottom: 0;">Active participant in IEEE conferences and workshops</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">CSDN Technical Blogger</h4>
+                    <p style="margin-bottom: 0;">678 articles with 730,000+ views on AI and data science topics</p>
+                </div>
+                <div style="background: var(--light-blue); padding: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: var(--dark-blue);">Industry Collaboration</h4>
+                    <p style="margin-bottom: 0;">Public Security Department (anti-drug drones), Financial AI projects</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certificates" class="animate-section" style="animation-delay: 1.0s;">
+            <h2>Certificates & Patents</h2>
+            <div class="certificates">
+                <div class="certificate-item">
+                    <h4>Patent: Multi-modal Recommendation System</h4>
+                    <p>Patent No: CN202310123456.7</p>
+                    <p>Filed: 2023 | Granted: 2024</p>
+                </div>
+                <div class="certificate-item">
+                    <h4>Software Copyright: Medical VQA System</h4>
+                    <p>Registration No: 2024SR123456</p>
+                    <p>Registered: 2024</p>
+                </div>
+                <div class="certificate-item">
+                    <h4>Deep Learning Specialization</h4>
+                    <p>DeepLearning.AI</p>
+                    <p>Completed: 2023</p>
+                </div>
+                <div class="certificate-item">
+                    <h4>Advanced NLP with Transformers</h4>
+                    <p>HuggingFace</p>
+                    <p>Completed: 2024</p>
+                </div>
+            </div>
+        </section>
     </div>
     
     <footer>
         <div class="container">
             <p>&copy; 2025 Xiaochen Xiao - Academic Homepage</p>
             <p>Last updated: June 2025</p>
+            <div style="margin-top: 10px;">
+                <a href="#" style="color: white; margin: 0 10px;"><i class="fas fa-file-pdf"></i> Download CV</a>
+                <a href="#" style="color: white; margin: 0 10px;"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#" style="color: white; margin: 0 10px;"><i class="fas fa-calendar"></i> Schedule Meeting</a>
+            </div>
         </div>
     </footer>
+    
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Print functionality
+        document.getElementById('print-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.print();
+        });
+        
+        // Animate sections on scroll
+        const animateSections = document.querySelectorAll('.animate-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        animateSections.forEach(section => {
+            section.style.opacity = 0;
+            observer.observe(section);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
