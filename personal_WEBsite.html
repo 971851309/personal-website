@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaochen Xiao - Academic Homepage</title>
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --dark-blue: #0d47a1;
+            --light-blue: #e8f0fe;
+            --accent-blue: #4285f4;
+            --text-dark: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+        
+        section {
+            background-color: var(--white);
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: var(--dark-blue);
+            margin-top: 25px;
+        }
+        
+        .education-item, .project-item, .award-item {
+            margin-bottom: 25px;
+        }
+        
+        .date {
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .skill-category h4 {
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+        
+        .publication-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .publication-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publication-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .publication-details {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .certificates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .certificate-item {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--light-blue);
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .skills-container, .certificates {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Xiaochen Xiao</h1>
+            <div class="subtitle">Data Science & AI Researcher | Innovator | Reviewer</div>
+            <div class="contact-info">
+                <a href="mailto:rx_7811@qq.com">Email: rx_7811@qq.com</a>
+                <a href="https://blog.csdn.net/CSDNXXCQ" target="_blank">CSDN Blog</a>
+                <a href="https://github.com/971851309/Tourism-data-set" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Graduate student specializing in Data Science and Innovation at the University of Technology Sydney. With a strong academic record including international awards and national innovation projects, I have published multiple papers in top-tier conferences and journals (EI, IEEE, SCI). My expertise spans deep learning, natural language processing, and reinforcement learning, with hands-on experience in projects like drone-based object recognition and AI-driven financial systems. I hold software copyrights and a patent, demonstrating a blend of theoretical knowledge and practical innovation.</p>
+        </section>
+        
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>University of Technology Sydney <span class="date">2023.09 - 2025.06</span></h3>
+                <p><strong>Master of Data Science and Innovation</strong></p>
+                <ul>
+                    <li><strong>Key Achievements</strong>: International awards (2), National innovation projects (3), Provincial二等奖 in E-commerce Innovation Competition</li>
+                    <li><strong>Research Output</strong>: 8 conference papers (first author, EI/IEEE/CPCI), 5 as sole author; 4 software copyrights; 1 patent; 2 SCI papers (Q2 as first author, Q3 as co-author); 1 CCF-A paper under review</li>
+                    <li><strong>Best Young Researcher Award 2025</strong></li>
+                </ul>
+            </div>
+            
+            <div class="education-item">
+
+                <p><strong>Bachelor of E-Commerce</strong></p>
+            </div>
+        </section>
+        
+        <section id="research">
+            <h2>Research Projects</h2>
+            
+            <div class="project-item">
+                <h3>Multi-modal Tourism Recommendation System with LLM (MMAgentRec) <span class="date">2023.04 - 2024.05</span></h3>
+                <ul>
+                    <li>Built a high-quality tourism dataset with 9,004 entries from Guangdong province, using BERT for text and ResNet50 for image processing</li>
+                    <li>Designed a Multi-Graph Convolution Network (MGCN) framework with cross-attention mechanism for multi-modal fusion</li>
+                    <li>Integrated self-reflective LLM for continuous recommendation optimization through user feedback</li>
+                    <li>Outperformed Blip2 and CLIP on accuracy, recall and F1 scores</li>
+                    <li>Published in SCI Q2 journal (sole author, accepted)</li>
+                    <li>DOI: <a href="https://doi.org/10.1038/s41598-025-96458-w" target="_blank">10.1038/s41598-025-96458-w</a></li>
+                </ul>
+            </div>
+            
+            <div class="project-item">
+                <h3>DCNN-BERT-BiLSTM Multi-modal Sentiment Analysis Framework (MEA-IFE) <span class="date">2023.01 - 2024.01</span></h3>
+                <ul>
+                    <li>Developed BERT-SKNet-BiLSTM-ECA text feature extraction module with enhanced multi-scale context modeling</li>
+                    <li>Designed image feature enhancement combining AlexNet and Vision Transformer</li>
+                    <li>Implemented multi-head attention for dynamic feature fusion, improving cross-modal interaction</li>
+                    <li>Achieved 98.00% accuracy and 98.13% F1 score on Kaggle text and FER2013 image datasets</li>
+                    <li>Published in SCI Q3 journal (second author)</li>
+                </ul>
+            </div>
+            
+            <div class="project-item">
+                <h3>Medical Image Visual Question Answering (VQA) System <span class="date">2024.04 - 2024.10</span></h3>
+                <ul>
+                    <li>Collected and processed 5,640 medical images with 46,827 QA pairs (X-rays, CT scans, pathology slides)</li>
+                    <li>Designed multi-modal VQA framework with MGCN, ResNet and cross-attention mechanisms</li>
+                    <li>Achieved 0.9150 accuracy, 0.93 recall and 0.92 F1 score on MedVQA dataset</li>
+                    <li>Submitted to TPAMI (CCF-A, under review)</li>
+                </ul>
+            </div>
+            
+            <div class="project-item">
+                <h3>Poppy Recognition System for Anti-drug Drones <span class="date">2019.11 - 2021.10</span></h3>
+                <ul>
+                    <li>Led neural network algorithm development using TensorFlow 2.0 and Python</li>
+                    <li>Collected and labeled 2,000 poppy images; achieved 70% recognition accuracy</li>
+                    <li>Implemented in collaboration with Public Security Department</li>
+                    <li>National Innovation Project (approved)</li>
+                </ul>
+            </div>
+            
+            <div class="project-item">
+                <h3>Bitcoin-Gold Portfolio Investment with Deep Reinforcement Learning <span class="date">2022.01 - 2022.06</span></h3>
+                <ul>
+                    <li>Developed PPO algorithm for quantitative trading decisions</li>
+                    <li>Used LSTM expectations as input to DRL, improving accuracy by 10.38%</li>
+                    <li>Published conference paper</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="publications">
+            <h2>Publications</h2>
+            <ul class="publication-list">
+                <li class="publication-item">
+                    <div class="publication-title">MMAgentRec: A Personalized Multi-modal Recommendation Agent with Large Language Model</div>
+                    <div class="publication-details">Scientific Reports (SCI Q2) | Sole Author | Accepted | DOI: 10.1038/s41598-025-96458-w | 2025</div>
+                </li>
+                <li class="publication-item">
+                    <div class="publication-title">MEA-IFE: A Multi-modal Sentiment Analysis Framework with Enhanced Feature Extraction</div>
+                    <div class="publication-details">Journal of AI Research (SCI Q3) | Second Author | 2024</div>
+                </li>
+                <li class="publication-item">
+                    <div class="publication-title">Medical Image Visual Question Answering with Multi-modal Learning</div>
+                    <div class="publication-details">Submitted to IEEE TPAMI (CCF-A) | Under Review | 2025</div>
+                </li>
+                <li class="publication-item">
+                    <div class="publication-title">8 Conference Papers in EI/IEEE/CPCI-indexed Proceedings</div>
+                    <div class="publication-details">First Author (5 as sole author) | Deep Learning & AI Applications | 2021-2024</div>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="patents">
+            <h2>Patents & Software Copyrights</h2>
+            <ul>
+                <li><strong>Patent</strong>: "A Multi-modal Recommendation System with Dynamic User Feedback Integration" (Granted 2024)</li>
+                <li><strong>Software Copyrights</strong>:
+                    <ul>
+                        <li>Data Mining Information Integration Assistant System V1.0 (2021)</li>
+                        <li>Graph-based Natural Language Processing Software V1.0 (2021)</li>
+                        <li>GAN-based Text-to-Face Image Platform V1.0 (2022)</li>
+                        <li>Reinforcement Learning-based Personalized Recommendation System V1.0 (2022)</li>
+                        <li>Mathematical Modeling Robot Reinforcement Learning System V1.0 (2022)</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="reviewer">
+            <h2>Peer Review Activities</h2>
+            <div class="certificates">
+                <div class="certificate-item">
+                    <h4>Medical Science Monitor</h4>
+                    <p>Reviewed manuscript on LLM performance in responding to patient queries about rotator cuff injuries</p>
+                    <p>April 2025 | IF: 2.200</p>
+                </div>
+                <div class="certificate-item">
+                    <h4>Knowledge and Information Systems</h4>
+                    <p>Recognized for reviewing 1 manuscript in 2025</p>
+                    <p>June 2025 | Springer Nature</p>
+                </div>
+                <div class="certificate-item">
+                    <h4>Journal of Revenue and Pricing Management</h4>
+                    <p>Recognized for reviewing 1 manuscript in 2025</p>
+                    <p>May 2025 | Springer Nature</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="awards">
+            <h2>Awards & Honors</h2>
+            <div class="award-item">
+                <h3>Best Young Researcher Award 2025</h3>
+                <p>University of Technology Sydney | For outstanding contributions to AI research</p>
+            </div>
+            <div class="award-item">
+                <h3>National College Student Innovation Projects (3)</h3>
+                <ul>
+                    <li>Poppy Recognition System for Drones (2020)</li>
+                    <li>Building Energy Management Platform (2020)</li>
+                    <li>AI-based Guide System for the Blind (2021)</li>
+                </ul>
+            </div>
+            <div class="award-item">
+                <h3>E-commerce Innovation Competition</h3>
+                <p>Provincial二等奖 | Smart E-commerce Customer Service Project (2021)</p>
+            </div>
+            <div class="award-item">
+                <h3>Mathematical Contest in Modeling</h3>
+                <p>Successful Participant | Team Leader (2022)</p>
+            </div>
+            <div class="award-item">
+                <h3>China International "Internet+" Competition</h3>
+                <p>Campus Gold Award | Building Energy Monitoring System (2021)</p>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4>Technical Skills</h4>
+                    <ul>
+                        <li>Python (Advanced)</li>
+                        <li>TensorFlow/PyTorch</li>
+                        <li>Data Mining & Visualization</li>
+                        <li>Web Scraping</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>AI/ML Domains</h4>
+                    <ul>
+                        <li>Deep Learning (CNN/RNN/Transformer)</li>
+                        <li>Natural Language Processing</li>
+                        <li>Reinforcement Learning</li>
+                        <li>Multi-modal Systems</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li>Computer Vision</li>
+                        <li>Recommendation Systems</li>
+                        <li>Quantitative Trading</li>
+                        <li>Medical AI</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Professional</h4>
+                    <ul>
+                        <li>Academic Writing</li>
+                        <li>Peer Review</li>
+                        <li>Patent Application</li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="activities">
+            <h2>Professional Activities</h2>
+            <ul>
+                <li><strong>Chair</strong>, Data Beauty Association (2020-2022)</li>
+                <li><strong>Head</strong>, Math Modeling and Big Data Innovation Lab Data Department</li>
+                <li><strong>IEEE Student Member</strong></li>
+                <li><strong>CSDN Technical Blogger</strong>: 678 articles with 730,000+ views</li>
+                <li><strong>Industry Collaboration</strong>: Public Security Department (anti-drug drones), Financial AI projects</li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Xiaochen Xiao - Academic Homepage</p>
+            <p>Last updated: June 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
